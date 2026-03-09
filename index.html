@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopify Listing Agent — Proposal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #e5e5e5;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 60px 24px 100px;
+        }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(99, 102, 241, 0.15);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 100px;
+            font-size: 13px;
+            color: #818cf8;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            font-size: clamp(32px, 6vw, 48px);
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #a3a3a3;
+            max-width: 540px;
+            margin: 0 auto;
+        }
+
+        /* Sections */
+        section {
+            margin-bottom: 64px;
+        }
+
+        h2 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 24px;
+            letter-spacing: -0.3px;
+        }
+
+        h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+
+        p {
+            color: #a3a3a3;
+            margin-bottom: 16px;
+            font-size: 16px;
+        }
+
+        /* Feature cards */
+        .features {
+            display: grid;
+            gap: 16px;
+        }
+
+        .feature {
+            background: #141414;
+            border: 1px solid #262626;
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .feature .icon {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        .feature h3 {
+            margin-bottom: 8px;
+        }
+
+        .feature p {
+            margin-bottom: 0;
+            font-size: 15px;
+        }
+
+        /* How it works */
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .step {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            background: rgba(99, 102, 241, 0.15);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #818cf8;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .step-content h3 {
+            margin-bottom: 4px;
+        }
+
+        .step-content p {
+            margin-bottom: 0;
+            font-size: 15px;
+        }
+
+        /* Pricing card */
+        .pricing-card {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.05));
+            border: 1px solid rgba(99, 102, 241, 0.25);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .price {
+            font-size: 56px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: -2px;
+        }
+
+        .price-label {
+            font-size: 16px;
+            color: #a3a3a3;
+            margin-top: 4px;
+            margin-bottom: 20px;
+        }
+
+        .guarantee {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.25);
+            border-radius: 100px;
+            color: #4ade80;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .includes-list {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+            margin-top: 32px;
+        }
+
+        .includes-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #1a1a1a;
+            color: #d4d4d4;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .includes-list li:last-child {
+            border-bottom: none;
+        }
+
+        .check {
+            color: #4ade80;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        /* Costs table */
+        .costs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+        }
+
+        .costs-table th {
+            text-align: left;
+            padding: 12px 16px;
+            background: #141414;
+            color: #a3a3a3;
+            font-size: 13px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid #262626;
+        }
+
+        .costs-table td {
+            padding: 14px 16px;
+            border-bottom: 1px solid #1a1a1a;
+            font-size: 15px;
+            color: #d4d4d4;
+        }
+
+        .costs-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .cost-amount {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .cost-free {
+            color: #4ade80;
+        }
+
+        .total-row {
+            background: rgba(99, 102, 241, 0.08);
+            border-radius: 8px;
+            padding: 20px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .total-row span:first-child {
+            color: #a3a3a3;
+            font-size: 15px;
+        }
+
+        .total-row span:last-child {
+            color: #fff;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .cost-note {
+            font-size: 14px;
+            color: #737373;
+            margin-top: 16px;
+        }
+
+        /* Ownership */
+        .own-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .own-item {
+            background: #141414;
+            border: 1px solid #262626;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .own-item .icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .own-item p {
+            margin: 0;
+            font-size: 14px;
+            color: #d4d4d4;
+        }
+
+        /* Add-ons */
+        .addons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .addon-tag {
+            padding: 8px 16px;
+            background: #141414;
+            border: 1px solid #262626;
+            border-radius: 100px;
+            font-size: 14px;
+            color: #d4d4d4;
+        }
+
+        /* Next steps */
+        .next-steps {
+            background: #141414;
+            border: 1px solid #262626;
+            border-radius: 16px;
+            padding: 32px;
+        }
+
+        .next-steps .steps {
+            gap: 16px;
+        }
+
+        /* Divider */
+        .divider {
+            height: 1px;
+            background: #262626;
+            margin: 64px 0;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid #1a1a1a;
+        }
+
+        .footer p {
+            font-size: 14px;
+            color: #525252;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 40px 20px 80px;
+            }
+
+            .pricing-card {
+                padding: 28px 24px;
+            }
+
+            .price {
+                font-size: 44px;
+            }
+
+            .own-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .costs-table th,
+            .costs-table td {
+                padding: 10px 12px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- Hero -->
+        <div class="hero">
+            <div class="badge">Proposal</div>
+            <h1>Shopify Listing Agent</h1>
+            <p>A personal AI assistant on Telegram that turns photos into live Shopify listings in seconds.</p>
+        </div>
+
+        <!-- What You Get -->
+        <section>
+            <h2>What You Get</h2>
+            <div class="features">
+                <div class="feature">
+                    <div class="icon">📸</div>
+                    <h3>Photo to Listing</h3>
+                    <p>Send a photo with a quick description and the AI creates a full product listing — title, description, price, size, inventory, images. All from Telegram.</p>
+                </div>
+                <div class="feature">
+                    <div class="icon">✍️</div>
+                    <h3>Branded Descriptions</h3>
+                    <p>Descriptions are written to match your store's voice and style. Casual, punchy, on-brand — every time.</p>
+                </div>
+                <div class="feature">
+                    <div class="icon">📊</div>
+                    <h3>Order & Stock Alerts</h3>
+                    <p>Daily order summaries, revenue tracking, and low stock alerts — all pushed straight to your Telegram.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section>
+            <h2>How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Send photos + a quick description</h3>
+                        <p>e.g. "Nike tee, size L, $45" — that's all it needs.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>AI creates the full listing</h3>
+                        <p>Generates the description, sets everything up, and saves it as a draft for your review.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>You approve, it goes live</h3>
+                        <p>Review the draft in Shopify, hit active, and it's published to your store.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- Pricing -->
+        <section>
+            <h2>Pricing</h2>
+            <div class="pricing-card">
+                <div class="price">$1,000</div>
+                <div class="price-label">One-time setup fee</div>
+                <div class="guarantee">30-day money-back guarantee</div>
+                <ul class="includes-list">
+                    <li><span class="check">&#10003;</span> Full build & configuration of your Telegram listing agent</li>
+                    <li><span class="check">&#10003;</span> Connected to your Shopify store(s)</li>
+                    <li><span class="check">&#10003;</span> Description style customised to your brand</li>
+                    <li><span class="check">&#10003;</span> Deployed and running on your own infrastructure</li>
+                    <li><span class="check">&#10003;</span> You own everything — the code, the hosting, the data</li>
+                </ul>
+            </div>
+            <p class="cost-note">If you're not happy within 30 days, full refund. No questions asked.</p>
+        </section>
+
+        <!-- Ongoing Costs -->
+        <section>
+            <h2>Your Ongoing Costs</h2>
+            <p>These are third-party services billed directly to your own accounts. I don't touch any of it.</p>
+            <table class="costs-table">
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>What It Does</th>
+                        <th>Est. Cost</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Railway</td>
+                        <td>Runs the bot 24/7</td>
+                        <td><span class="cost-amount">~$5–10/mo</span></td>
+                    </tr>
+                    <tr>
+                        <td>Claude API</td>
+                        <td>AI that writes your descriptions</td>
+                        <td><span class="cost-amount">~$2–10/mo</span></td>
+                    </tr>
+                    <tr>
+                        <td>Supabase</td>
+                        <td>Database & memory</td>
+                        <td><span class="cost-amount cost-free">Free</span></td>
+                    </tr>
+                    <tr>
+                        <td>Telegram</td>
+                        <td>Your chat interface</td>
+                        <td><span class="cost-amount cost-free">Free</span></td>
+                    </tr>
+                    <tr>
+                        <td>Shopify API</td>
+                        <td>Creates the listings</td>
+                        <td><span class="cost-amount cost-free">Free</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="total-row">
+                <span>Estimated monthly total</span>
+                <span>~$7–20/mo</span>
+            </div>
+            <p class="cost-note">Each listing costs roughly 1–5 cents in API fees. Even 50 listings a day would barely hit $20/mo.</p>
+        </section>
+
+        <!-- What You Own -->
+        <section>
+            <h2>What You Own</h2>
+            <p>Everything runs under your accounts. If we stop working together, it all keeps running.</p>
+            <div class="own-grid">
+                <div class="own-item">
+                    <div class="icon">📂</div>
+                    <p>GitHub repo with full source code</p>
+                </div>
+                <div class="own-item">
+                    <div class="icon">☁️</div>
+                    <p>Railway account & deployment</p>
+                </div>
+                <div class="own-item">
+                    <div class="icon">🔑</div>
+                    <p>All API keys in your name</p>
+                </div>
+                <div class="own-item">
+                    <div class="icon">🤖</div>
+                    <p>Telegram bot under your control</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- Add-ons -->
+        <section>
+            <h2>Changes & Add-Ons</h2>
+            <p>Want more features down the line? Just message me. I'll scope it out and quote you before building anything. No surprises.</p>
+            <div class="addons">
+                <span class="addon-tag">Customer service automation</span>
+                <span class="addon-tag">Email automation</span>
+                <span class="addon-tag">Multi-store management</span>
+                <span class="addon-tag">Bulk listing from spreadsheets</span>
+                <span class="addon-tag">Revenue dashboards</span>
+                <span class="addon-tag">Social media auto-posting</span>
+            </div>
+        </section>
+
+        <!-- Next Steps -->
+        <section>
+            <h2>Next Steps</h2>
+            <div class="next-steps">
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Create your accounts</h3>
+                            <p>Railway, Anthropic, Supabase — I'll walk you through each one.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>I build & deploy your agent</h3>
+                            <p>Takes about a week to get everything configured and running.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>We test it together</h3>
+                            <p>Dial in your description style and make sure everything's perfect.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>You're live</h3>
+                            <p>Start listing from Telegram. That's it.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>Built by Benji</p>
+        </div>
+
+    </div>
+</body>
+</html>
