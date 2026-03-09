@@ -222,20 +222,32 @@
             flex-shrink: 0;
         }
 
-        /* Free bonus section */
+        /* Free bonus section — gold */
         .bonus-card {
-            background: #fff;
-            border: 2px solid #020912;
+            background: linear-gradient(135deg, #fef9e7, #fdf6e3, #fef9e7);
+            border: 2px solid #d4a843;
             border-radius: 12px;
             padding: 28px;
             margin-top: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bonus-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #c9952e, #e8c55a, #c9952e);
         }
 
         .bonus-label {
             display: inline-block;
-            padding: 4px 12px;
-            background: #020912;
-            color: #fcfcfc;
+            padding: 4px 14px;
+            background: linear-gradient(135deg, #c9952e, #d4a843);
+            color: #fff;
             border-radius: 100px;
             font-size: 11px;
             font-weight: 600;
@@ -247,11 +259,13 @@
         .bonus-card h3 {
             font-size: 17px;
             margin-bottom: 10px;
+            color: #1a1a1a;
         }
 
         .bonus-card p {
             margin-bottom: 0;
             font-size: 14px;
+            color: #5a4a2a;
         }
 
         .bonus-items {
@@ -263,7 +277,7 @@
         .bonus-items li {
             padding: 6px 0;
             font-size: 14px;
-            color: #374151;
+            color: #3d3418;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -271,6 +285,8 @@
 
         .bonus-items li span {
             flex-shrink: 0;
+            color: #c9952e;
+            font-weight: 700;
         }
 
         .refund-note {
@@ -459,8 +475,8 @@
         <!-- Hero -->
         <div class="hero">
             <img src="https://www.monkeybusiness.co.nz/cdn/shop/files/beast.gif?v=1749693899&width=600" alt="Monkey Business" style="display: block; width: 280px; margin: 0 auto 16px;">
-            <h1>Your AI Listing Assistant</h1>
-            <p>Send photos and a few details on Telegram. Get a full Shopify listing created in seconds — title, description, price, images, published.</p>
+            <h1>Monkey's AI Listing Assistant</h1>
+            <p>Send photos and a few details via chat. Get a full Shopify listing created in seconds — title, description, price, images, published.</p>
         </div>
 
         <!-- What You Get -->
@@ -470,7 +486,7 @@
                 <div class="feature">
                     <div class="icon">📸</div>
                     <h3>Photos to Listing</h3>
-                    <p>Send photos on Telegram with the item name, size, and price. The AI writes the full description, uploads the images, sets the price and inventory, and publishes the listing to your store. You don't write a thing.</p>
+                    <p>Send photos via chat with the item name, size, and price. The AI writes the full description, uploads the images, sets the price and inventory, and publishes the listing to your store. You don't write a thing.</p>
                 </div>
                 <div class="feature">
                     <div class="icon">✍️</div>
@@ -480,7 +496,7 @@
                 <div class="feature">
                     <div class="icon">📊</div>
                     <h3>Weekly Sales Summary</h3>
-                    <p>Get a weekly summary of your orders, revenue, and what's sold — pushed straight to your Telegram. No logging into Shopify to check.</p>
+                    <p>Get a weekly summary of your orders, revenue, and what's sold — pushed straight to your chat. No logging into Shopify to check.</p>
                 </div>
                 <div class="feature">
                     <div class="icon">💬</div>
@@ -528,7 +544,7 @@
                 <div class="price-label">One-time setup fee</div>
                 <div class="guarantee">15-day money-back guarantee</div>
                 <ul class="includes-list">
-                    <li><span class="check">&#10003;</span> Full build & configuration of your Telegram listing agent</li>
+                    <li><span class="check">&#10003;</span> Full build & configuration of your AI listing assistant</li>
                     <li><span class="check">&#10003;</span> 7–10 day setup & deployment</li>
                     <li><span class="check">&#10003;</span> 15 days of testing, filtering, and touch-ups</li>
                     <li><span class="check">&#10003;</span> Connected to your Shopify store</li>
@@ -543,7 +559,7 @@
                 <h3>AI Sales Intelligence</h3>
                 <p>Since you're my first Shopify listing project, I'm throwing these in for free at no cost:</p>
                 <ul class="bonus-items">
-                    <li><span>&#10003;</span> Weekly sales & revenue summaries pushed to your Telegram</li>
+                    <li><span>&#10003;</span> Weekly sales & revenue summaries pushed to your chat</li>
                     <li><span>&#10003;</span> Ask your AI about your Shopify data — revenue, what sold, best sellers, monthly breakdowns, whatever you need</li>
                 </ul>
             </div>
@@ -575,8 +591,8 @@
                         <td><span class="cost-amount">~$2–10/mo</span></td>
                     </tr>
                     <tr>
-                        <td>Telegram</td>
-                        <td>Your chat interface</td>
+                        <td>Chat Interface</td>
+                        <td>Your personal messaging assistant</td>
                         <td><span class="cost-amount cost-free">Free</span></td>
                     </tr>
                 </tbody>
@@ -607,7 +623,7 @@
                 </div>
                 <div class="own-item">
                     <div class="icon">🤖</div>
-                    <p>Telegram bot you control</p>
+                    <p>Chat assistant you control</p>
                 </div>
             </div>
         </section>
@@ -658,7 +674,7 @@
                         <div class="step-number">4</div>
                         <div class="step-content">
                             <h3>You're live</h3>
-                            <p>Start listing from Telegram. That's it.</p>
+                            <p>Start listing from your phone. That's it.</p>
                         </div>
                     </div>
                 </div>
